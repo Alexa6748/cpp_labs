@@ -3,20 +3,22 @@
 #include <vector>
 #include <list>
 
-void printVector(const std::vector<Number>& vec)
+void printVector(const std::vector<Number> &vec)
 {
     int i = 0;
     std::cout << "Printed vector" << std::endl;
-    for (auto& num : vec) {
+    for (auto &num : vec)
+    {
         std::cout << "Value " + std::to_string(i++) + " : " << num.getValue() << ", String representation: " << num.getStringRepresentation() << std::endl;
     }
 }
 
-void printList(const std::list<Number>& lst)
+void printList(const std::list<Number> &lst)
 {
     int i = 0;
     std::cout << "Printed List" << std::endl;
-    for (auto& num : lst) {
+    for (auto &num : lst)
+    {
         std::cout << "Value " + std::to_string(i++) + " : " << num.getValue() << ", String representation: " << num.getStringRepresentation() << std::endl;
     }
 }
@@ -29,21 +31,21 @@ Number createNumber(int value)
 int main()
 {
     std::cout << "--- Creating static instances ---" << std::endl;
-    Number n1(42);       // Статический экземпляр
-    Number n2(n1);       // Копия n1
+    Number n1(42);            // Статический экземпляр
+    Number n2(n1);            // Копия n1
     Number n3(std::move(n2)); // Перемещение n2
 
     std::cout << "\n--- Creating dynamic instances ---" << std::endl;
-    Number* p_n4 = new Number(100);   // Динамический экземпляр
-    delete p_n4;                      // Удаление динамического экземпляра
+    Number *p_n4 = new Number(100); // Динамический экземпляр
+    delete p_n4;                    // Удаление динамического экземпляра
 
     std::cout << "\n--- Passing to function by value ---" << std::endl;
-    Number n5 = createNumber(55);     // Передача и возврат по значению
+    Number n5 = createNumber(55); // Передача и возврат по значению
 
     std::cout << "\n--- Passing to function by reference ---" << std::endl;
     Number n6(66);
-    Number& ref_n6 = n6;              // Ссылка на n6
-    Number n7(ref_n6);                // Копируем через ссылку
+    Number &ref_n6 = n6; // Ссылка на n6
+    Number n7(ref_n6);   // Копируем через ссылку
 
     std::cout << "\n--- Working with vectors and lists ---" << std::endl;
     std::vector<Number> numbers_vec;

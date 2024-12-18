@@ -6,7 +6,7 @@ Number::Number()
 {
     std::cout << "Default constructor" << std::endl;
     m_value = 0;
-    m_string_representation = "ноль";
+    m_string_representation = "null";
 }
 
 // Конструктор с параметрами
