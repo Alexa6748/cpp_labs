@@ -60,7 +60,7 @@ size_t getSize() const { return size; }
 ```
 Метод `getSize` возвращает размер вектора.
 
-#### Перегрузка оператора сложения
+#### Перегрузка оператора сложения и вычитания
 
 ```cpp
 SparseVector<T> operator+(const SparseVector<T> &other) const
@@ -75,8 +75,18 @@ SparseVector<T> operator+(const SparseVector<T> &other) const
             result.set(index, value);
     return result;
 }
+
+SparseVector<T> operator-(const SparseVector<T> &other) const
+{
+    if (size != other.size)
+        throw std::invalid_argument("Vector sizes do not match");
+    SparseVector<T> result(size);
+    for (const auto &[index, value] : data)
+        result.set(index, value - other.get(index));
+    return result;
+}
 ```
-Перегруженный оператор `+` складывает текущий объект с другим объектом типа `SparseVector`. Если размеры векторов различаются, выбрасывается исключение `std::invalid_argument`. Затем создается новый объект `result`, куда копируются все элементы текущего вектора и другого вектора, суммируя их значения.
+Перегруженный оператор `+/-` складывает/вычитает текущий объект с другим объектом типа `SparseVector`. Если размеры векторов различаются, выбрасывается исключение `std::invalid_argument`. Затем создается новый объект `result`, куда копируются все элементы текущего вектора и другого вектора, суммируя их значения.
 
 #### Перегрузка оператора умножения на скаляр
 
