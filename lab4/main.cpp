@@ -49,6 +49,16 @@ public:
         return result;
     }
 
+    SparseVector<T> operator-(const SparseVector<T> &other) const
+    {
+        if (size != other.size)
+            throw std::invalid_argument("Vector sizes do not match");
+        SparseVector<T> result(size);
+        for (const auto &[index, value] : data)
+            result.set(index, value - other.get(index));
+        return result;
+    }
+
     SparseVector<T> operator*(T scalar) const
     {
         SparseVector<T> result(size);
@@ -292,9 +302,16 @@ int main()
     std::cout << "Vector Sum: ";
     vecSum.print();
 
+    SparseVector<double> vecMin = vec1 - vec2;
+    std::cout << "Vector Minus: ";
+    vecMin.print();
+
     SparseVector<double> vecProd = vec1 * 5;
     std::cout << "Vector 1 Product with Scalar 5: ";
     vecProd.print();
+
+    double vec3 = vec1.dot(vec2);
+    std::cout << "Vector 1 Product with Vector 2: " << vec3 << "\n";
 
     // Пример использования разреженной матрицы
     SparseMatrix<double> mat1(3, 3);
