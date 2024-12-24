@@ -105,6 +105,12 @@ public:
             result.set(index, std::pow(value, exponent));
         return result;
     }
+    void print() const
+    {
+        for (size_t i = 0; i < size; ++i)
+            std::cout << get(i) << " ";
+        std::cout << "\n";
+    }
 };
 
 // Шаблонный класс для разреженной матрицы
@@ -274,29 +280,21 @@ int main()
     vec1.set(0, 1.0);
     vec1.set(2, 2.0);
     std::cout << "Vector 1: ";
-    for (size_t i = 0; i < 3; ++i)
-        std::cout << vec1.get(i) << " ";
-    std::cout << "\n";
+    vec1.print();
 
     SparseVector<double> vec2(3);
     vec2.set(1, 3.0);
     vec2.set(2, 4.0);
     std::cout << "Vector 2: ";
-    for (size_t i = 0; i < 3; ++i)
-        std::cout << vec2.get(i) << " ";
-    std::cout << "\n";
+    vec2.print();
 
     SparseVector<double> vecSum = vec1 + vec2;
     std::cout << "Vector Sum: ";
-    for (size_t i = 0; i < 3; ++i)
-        std::cout << vecSum.get(i) << " ";
-    std::cout << "\n";
+    vecSum.print();
 
     SparseVector<double> vecProd = vec1 * 5;
     std::cout << "Vector 1 Product with Scalar 5: ";
-    for (size_t i = 0; i < 3; ++i)
-        std::cout << vecProd.get(i) << " ";
-    std::cout << "\n";
+    vecProd.print();
 
     // Пример использования разреженной матрицы
     SparseMatrix<double> mat1(3, 3);
@@ -339,7 +337,7 @@ int main()
     SparseMatrix<double> matPower = mat1.power(2);
     std::cout << "Matrix 1 to the power of 2:\n";
     matPower.print();
-    
+
     SparseMatrix<double> mat3(2, 2);
     mat3.set(0, 0, 1.0);
     mat3.set(1, 1, 2.0);
