@@ -4,7 +4,7 @@
 #include <chrono>
 #include <cmath>
 
-const int SIZE = 1000; // Размер векторов и матриц
+const int SIZE = 4; // Размер векторов и матриц
 const int SPARSE_THRESHOLD = 10; // Порог для разреженности
 
 // Функция для заполнения вектора случайными значениями
